@@ -42,6 +42,8 @@ app.get("/pinterest", async (req, res) => {
         url: outUrl,
         title: "Pinterest shorten url",
       });
+    } else {
+      res.status(400).send({error: 'error'});
     }
     if (url.match("pinterest.com")) {
       const { hostname, pathname } = new URL(url);
@@ -61,6 +63,8 @@ app.get("/pinterest", async (req, res) => {
         url: outUrl,
         title: "Pinterest full url",
       });
+    } else {
+      res.status(400).send({error: 'error'});
     }
   } catch (error) {
     console.log(error);
