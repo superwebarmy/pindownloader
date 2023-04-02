@@ -33,12 +33,11 @@ app.get("/pinterest", async (req, res) => {
         throw new Error(`HTTP error ${response.status}`);
       }
       const body = await response.text();
-      const video = new JSDOM(body).window.document.getElementsByTagName(
+      const htmlSrc = new JSDOM(body).window.document.getElementsByTagName(
         "video"
-      )[0].src;
-      const thumbnailUrl = new JSDOM(body).window.document.getElementsByTagName(
-        "video"
-      )[0].poster;
+      )[0];
+      const outUrl = htmlSrc.src;
+      const thumbnailUrl = htmlSrc.poster;
       const outUrl = video.replace("/hls/", "/720p/").replace(".m3u8", ".mp4");
       res.status(200).send({
         url: outUrl,
@@ -57,12 +56,11 @@ app.get("/pinterest", async (req, res) => {
         throw new Error(`HTTP error ${response.status}`);
       }
       const body = await response.text();
-      const video = new JSDOM(body).window.document.getElementsByTagName(
+           const htmlSrc = new JSDOM(body).window.document.getElementsByTagName(
         "video"
-      )[0].src;
-      const thumbnailUrl = new JSDOM(body).window.document.getElementsByTagName(
-        "video"
-      )[0].poster;
+      )[0];
+      const outUrl = htmlSrc.src;
+      const thumbnailUrl = htmlSrc.poster;
       const outUrl = video.replace("/hls/", "/720p/").replace(".m3u8", ".mp4");
       console.log(outUrl);
       res.status(200).send({
