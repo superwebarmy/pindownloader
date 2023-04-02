@@ -36,7 +36,7 @@ app.get("/pinterest", async (req, res) => {
       const htmlSrc = new JSDOM(body).window.document.getElementsByTagName(
         "video"
       )[0];
-      const outUrl = htmlSrc.src;
+      const video = htmlSrc.src;
       const thumbnailUrl = htmlSrc.poster;
       const outUrl = video.replace("/hls/", "/720p/").replace(".m3u8", ".mp4");
       res.status(200).send({
@@ -59,7 +59,7 @@ app.get("/pinterest", async (req, res) => {
            const htmlSrc = new JSDOM(body).window.document.getElementsByTagName(
         "video"
       )[0];
-      const outUrl = htmlSrc.src;
+      const video = htmlSrc.src;
       const thumbnailUrl = htmlSrc.poster;
       const outUrl = video.replace("/hls/", "/720p/").replace(".m3u8", ".mp4");
       console.log(outUrl);
