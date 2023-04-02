@@ -36,10 +36,13 @@ app.get("/pinterest", async (req, res) => {
       const video = new JSDOM(body).window.document.getElementsByTagName(
         "video"
       )[0].src;
+      const thumbnailUrl = new JSDOM(body).window.document.getElementsByTagName(
+        "video"
+      )[0].poster;
       const outUrl = video.replace("/hls/", "/720p/").replace(".m3u8", ".mp4");
-      console.log(outUrl);
       res.status(200).send({
         url: outUrl,
+        thumbnail: thumbnailUrl,
         title: "Pinterest shorten url",
       });
     } else {
@@ -57,10 +60,14 @@ app.get("/pinterest", async (req, res) => {
       const video = new JSDOM(body).window.document.getElementsByTagName(
         "video"
       )[0].src;
+      const thumbnailUrl = new JSDOM(body).window.document.getElementsByTagName(
+        "video"
+      )[0].poster;
       const outUrl = video.replace("/hls/", "/720p/").replace(".m3u8", ".mp4");
       console.log(outUrl);
       res.status(200).send({
         url: outUrl,
+        thumbnail: thumbnailUrl,
         title: "Pinterest full url",
       });
     } else {
